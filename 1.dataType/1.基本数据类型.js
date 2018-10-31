@@ -18,29 +18,35 @@ console.log(typeof false);       //'boolean'
 console.log(typeof null);   // 'object'
 console.log(typeof {name: 'jack'});  //'object'
 console.log(typeof [10, 20]);    //'object'
-
+console.log(typeof new Date());  //'object'
+console.log(typeof Symbol(10));   //symbol
 // 2、检测null,两种方法
 let obj=null;
 // !obj 是真的，由三种情况，null,undefined,0
 if(!obj && typeof obj !=='undefined'&& obj !==0){
-      console.log('obj是null');
+      console.log('=====obj是null=====111');
 }
 if(obj===null){
-      console.log('=====obj是null=====');
+      console.log('=====obj是null=====222');
 }
 
-//3、检测数组
+//3、检测数组  有3种方法
 let arr=[10,20];
 
 if(arr instanceof Array){
-      console.log('arr 是Array的子类');
+      console.log('arr是数组类型11111');
 }
 
 if(arr.constructor===Array){
-      console.log('arr 的类型是数组');
+      console.log('arr是数组类型22222');
 }
 
-if(Object.prototype.toString.call(arr)==='[Object Array]'){
-      console.log('arr是数组类型');
+if(Array.isArray(arr)){
+      console.log('arr是数组类型33333');
+}
+
+
+if(Object.prototype.toString.call(arr)==="[object Array]"){
+      console.log('arr是数组类型444444');
 }
 
