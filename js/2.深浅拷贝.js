@@ -4,13 +4,28 @@
 * */
 
 let person={
-      name:'jim',
+      name:undefined,
       score:{
           english:80,
           math:100
       },
       animal:[{name:'dog',num:2},{name:'cat',num:1}]
 };
+
+Object.defineProperty(person,'age',{
+      enumerable: true,
+      value: 8
+});
+
+
+let show = function show(){
+    let a=1;
+    return function () {
+          let b=2;
+          console.log(a+b);
+    }
+};
+
 
 let deepClone= function deepClone(obj) {
       let result=null;
@@ -28,7 +43,10 @@ let deepClone= function deepClone(obj) {
                  result[item]=deepClone(obj[item]);
             }
          //值类型直接返回
-      }else {
+      }else if(Object.prototype.toString.call(obj)=='[Object function]'){
+            return new Function("return " + obj.toString())();
+      }
+      else {
            return obj;
       }
 
