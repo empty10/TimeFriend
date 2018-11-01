@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+        .wrapper {
+            margin: 0 auto;
+            padding: 5px;
+            background-color: lightgrey;
+            width: 150px;
+            height: 100px;
+
+        }
+        .title,.desc{
+            list-style: none;
+        }
+
+        .desc{
+            height: 20px;
+            line-height: 20px;
+            font-size: 16px;
+            /*background-color: green;*/
+
+            /*超出文本  自动裁切*/
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <ul class="wrapper">
+        <li class="title">时政新闻</li>
+        <li class="desc">
+            中国经济发展对全球经济作出重大贡献
+        </li>
+    </ul>
+</body>
+</html>
