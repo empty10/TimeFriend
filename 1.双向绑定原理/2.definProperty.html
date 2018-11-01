@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+
+    </style>
+</head>
+<body>
+    <input type="text" id="input">
+
+<!--<script type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>-->
+<script>
+      let obj = {};
+      let temp = {};
+      Object.defineProperty(obj, "name", {
+            get() {
+                  console.log("页面加载，开始调用");
+                  return temp["name"];
+            },
+            set(val) {
+                  temp["name"] = val;
+                  input.value=val;  //将值赋给输入框
+            }
+      });
+
+      input.value = obj.name;
+      input.addEventListener("input",function () {
+            obj.name=this.value;                 //当值变化时，会调用set 方法
+      })
+
+</script>
+
+</body>
+</html>
