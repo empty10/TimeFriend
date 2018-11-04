@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    父亲：{{money}}
+    <child  :child-money="money" @get-money="addMoney"></child>
+</div>
+<script type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
+<script>
+      let child = {
+            template: `<div> 儿子：{{childMoney}} <button @click="getMore()">多给点吧！</button></div>`,
+            props:['childMoney'],
+            methods:{
+                  getMore(){
+                        this.$emit('get-money',100);
+                  }
+            }
+      };
+
+      let parent = new Vue({
+            el: '#app',
+            components:{child},
+            data: {money:400},
+            methods:{
+                  addMoney(val){
+                        this.money+=val;
+                  }
+            }
+      })
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    父亲：{{money}}
+    <child  :child-money="money"></child>
+</div>
+<script type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
+<script>
+      let child = {
+            template: `<div> 儿子：{{childMoney}}</div>`,
+
+            // props:['childMoney']
+            props:{
+                  childMoney:{
+                        type:Number,
+                        required:true,
+                        validator(val){
+                              return val >100 ;  //自定义校验
+                        }
+                  }
+            }
+      };
+
+      let parent = new Vue({
+            el: '#app',
+            components:{child},
+            data: {money:400}
+      })
+</script>
+</body>
+</html>
