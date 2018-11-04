@@ -1,5 +1,9 @@
-
 # webStorm
 .git/
 .idea
 .xml
+
+.DS_Store
+node_modules/
+.idea/
+.git/
