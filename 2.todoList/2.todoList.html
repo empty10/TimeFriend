@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style type="text/css">
+        .del {
+            text-decoration: line-through;
+            color: #cccccc !important;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    ToDoList
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h4 class="text-danger">亲，你还有 {{count}} 件事没有完成！ ^_^</h4>
+                        <input type="text" class="form-control" @keyup.enter="add()"
+                               v-model="title"
+                               placeholder="请输入您的任务！">
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group" v-for="todo in filterToDos">
+                            <li class=" list-group-item">
+                                <span :class="{del:todo.isSelected}">
+                                    <span><input type="checkbox" v-model="todo.isSelected"></span>
+                                    {{todo.title}}
+                                    <button class="pull-right btn btn-danger btn-sm" @click="remove(todo)">&bigotimes;
+                                    </button>
+                                    <div class="clear" style="clear: both"></div>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <ul class="nav nav-pills">
+                            <li :class="{active:hash==='all'}"><a href="#/all">全部</a></li>
+                            <li :class="{active:hash==='finished'}"><a href="#/finished">已完成</a></li>
+                            <li :class="{active:hash==='unfinished'}"><a href="#/unfinished">未完成</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
+<script>
+      let vm = new Vue({
+            el: '#app',
+            data: {
+                  todos: [
+                        {isSelected: true, title: '旅游'},
+                        {isSelected: false, title: '看电影'},
+                  ],
+                  title: '',
+                  hash:'',
+            },
+            computed: {
+                  count() {
+                        return this.todos.filter(item => item.isSelected !== true).length;
+                  },
+                  filterToDos(){
+                        if(this.hash==='all'){
+                              return this.todos;
+                        }else if(this.hash==='finished'){
+                              return this.todos.filter(item=>item.isSelected);
+                        }else if(this.hash==='unfinished'){
+                              return this.todos.filter(item=>!item.isSelected);
+                        }else {
+                              return this.todos;
+                        }
+                  }
+            },
+            created() {
+                  //如果localStorage 中有数据就使用；没有数据就使用默认的
+                  this.todos=JSON.parse(localStorage.getItem('data'))||this.todos;
+                  //监控hash的变化
+                  this.hash=window.location.hash.slice(2)||'all';
+                  window.addEventListener('hashchange', () => {
+                        this.hash=window.location.hash.slice(2);
+                  })
+            },
+            methods: {
+                  remove(val) {
+                        this.todos = this.todos.filter(todo => val !== todo);
+                  },
+                  add() {
+                        this.todos.push({
+                              isSelected: false,
+                              title: this.title
+                        });
+                        this.title = '';
+                  }
+            }
+
+      })
+</script>
+</body>
+</html>
