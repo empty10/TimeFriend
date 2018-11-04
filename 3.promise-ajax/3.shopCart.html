@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style type="text/css">
+
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <div class="container">
+        <table class="table table-hover table-bordered">
+            <h2 class="text-warning text-center"> 购物车</h2>
+            <tr>
+                <th>全选 <input type="checkbox" v-model="selectAll"></th>
+                <th>商品</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>小计</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(product,index) in products">
+                <td><input type="checkbox" v-model="product.isSelected"></td>
+                <td>
+                    <img :src="product.productCover" :alt="product.productInfo">
+                    {{product.productName}}
+                </td>
+                <td>{{product.productPrice}}</td>
+                <td>
+                    <input v-model="product.productCount" type="number" min="1">
+                </td>
+                <td>{{product.productPrice*product.productCount|toFixed(2)}}</td>
+                <td>
+                    <button class="btn btn-danger" @click="remove(product)">删除</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">总价格：{{sum|toFixed(2)}} RMB</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<script type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript" src="../node_modules/axios/dist/axios.js"></script>
+<script>
+      let vm = new Vue({
+            el: '#app',
+            data: {
+                  products: []
+            },
+            filters: {
+                  toFixed(input, param1) {
+                        return input.toFixed(param1);
+                  }
+            },
+            computed: {
+                  selectAll: {
+                        get() {
+                            return this.products.every(item=>item.isSelected);
+                        },
+                        set() {
+                            this.products.forEach(item=>item.isSelected=!item.isSelected);
+                        }
+                  },
+                  sum() { //如果计算属性写成函数 默认调用的就是get方法
+                        return this.products.reduce((pre, next) => {
+                              if (!next.isSelected) return pre;
+                              return pre + next.productPrice * next.productCount;
+                        }, 0);
+                  },
+
+                  /*sum:{
+                      get(){
+                            return this.products.reduce((pre,next)=>{
+                                 if(!next.isSelected ) return pre;
+                                 return pre+next.productPrice*next.productCount;
+                            },0);
+                      }
+                  }*/
+            },
+            created() {
+                  this.getData();
+            },
+            methods: {
+                  getData() {
+                        axios.get('./carts.json').then(res => {
+                              this.products = res.data;
+                              console.log(res.data);
+                        }, err => {
+                              console.log(err);
+                        })
+                  },
+                  remove(val){
+                        this.products=this.products.filter(item=>{return item!==val})
+                  }
+            },
+      })
+</script>
+</body>
+</html>
