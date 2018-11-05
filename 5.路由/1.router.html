@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .router-link-active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <!--路由声明式导航-->
+    <router-link to="/home" tag="button">首页</router-link>
+    <router-link to="/list" tag="button">列表页</router-link>
+    <router-view></router-view>
+</div>
+<script type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript" src="../node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+      let home = {
+            template: `<div>home</div>`
+      };
+      let list = {
+            template: `<div>list</div>`
+      };
+
+      let routes = [
+            {path: '/home', component: home},
+            {path: '/list', component: list}
+      ];
+
+      let router = new VueRouter({
+            // mode: "history",  H5模式，一般开发时候不用
+            routes
+      });
+
+      let vm = new Vue({
+            el: '#app',
+            data: {},
+            router: router
+      })
+</script>
+</body>
+</html>
