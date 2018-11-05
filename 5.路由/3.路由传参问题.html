@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <router-link to="/home" tag="button"> home</router-link>
+    <router-link to="/list" tag="button"> list</router-link>
+    <router-view></router-view>
+</div>
+<script type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript" src="../node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+      let home = {
+            template: '<div>home <button  @click="goList"> 去列表页</button> </div>',
+            data: () => {
+                  return {
+                        date:100,
+                        obj:{
+                              name:'jim',
+                              age:13
+                        }
+                  }
+            },
+            methods: {
+                  goList() {
+                        console.log(this.obj);
+                        window.sessionStorage.setItem('info',JSON.stringify(this.obj));
+                        this.$router.push({path: '/list'});
+                  }
+            }
+      };
+      let list = {
+            template: '<div>list  {{guaData.name}}<button @click="back"> 返回首页</button> </div>',
+            mounted(){
+                  /*this.guaData=this.$router.currentRoute.query.aaa;
+                  console.log(typeof  this.guaData);*/
+                  this.guaData=JSON.parse(window.sessionStorage.getItem('info'));
+                  console.log(this.guaData);
+            },
+            data:()=>{
+                  return {
+                        guaData:'',
+                  }
+            },
+            methods: {
+                  back() {
+                        this.$router.back();
+                  }
+            }
+      };
+      let routes = [
+            {path: '/home', component: home},
+            {path: '/list', component: list},
+      ];
+      let router = new VueRouter({
+            routes
+      });
+      let vm = new Vue({
+            el: '#app',
+            router,
+            data: {}
+
+      })
+</script>
+</body>
+</html>
