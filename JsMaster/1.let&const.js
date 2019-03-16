@@ -7,12 +7,12 @@
 
 
 //2 证明：switch  case 里面的case 也是独立的块级作用域
-let a=1;
-switch(a){
-      case 0:let b='2018'
-      case 2:let b='2019'
-      case 1:console.log(b)
-}
+// let a=1;
+// switch(a){
+//       case 0:let b='2018'
+//       case 2:let b='2019'
+//       case 1:console.log(b)
+// }
 
 //3、使用var 定时器,
 // for(const i=0;i<5;i++){
