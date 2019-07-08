@@ -28,7 +28,7 @@ console.log( Object.getPrototypeOf(stu).constructor===Student)
 console.log(Student.prototype)
 stu.name='张三'
 console.log(stu.name)
-delete stu.name
+delete stu.name         
 console.log(stu.name)
 
 //5. 原型的原型？
