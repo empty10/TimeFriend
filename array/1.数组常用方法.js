@@ -4,6 +4,8 @@ let arr=[1,2,3,4,5],
 //push，pop，unshift,shift,splice,slice,join/toString,reverse/sort,
 
 //splice 删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组。
+let sp=arr.splice(2,1,999)
+console.log(arr,sp)   //[ 1, 2, 999, 4, 5 ] [ 3 ]
 
 
 // slice(begin,end 不包含)，返回一个新的数组（前拷贝），不改变原数组
@@ -25,11 +27,11 @@ let arr=[1,2,3,4,5],
 let a=[1,2,3,'aaa',5],
     b=null;
     b=[...a];
-    console.log(b===a) //false
+    // console.log(b===a) //false
 
 
 let aa={cc:10},
-    bb={...a};
-console.log(aa,bb)
+    bb={...aa};
+// console.log(aa,bb,aa==bb,aa===bb)  //false,false
 
 
