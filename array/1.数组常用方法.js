@@ -3,18 +3,23 @@ let arr=[1,2,3,4,5],
 
 //push，pop，unshift,shift,splice,slice,join/toString,reverse/sort,
 
-//splice 删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组。
+//1,splice 删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组。
 let sp=arr.splice(2,1,999)
 console.log(arr,sp)   //[ 1, 2, 999, 4, 5 ] [ 3 ]
 
 
-// slice(begin,end 不包含)，返回一个新的数组（前拷贝），不改变原数组
+// 2,slice(begin,end 不包含)，返回一个新的数组（前拷贝），不改变原数组
 // console.log(arr)
 // let res=arr.slice(-1,0)
 // console.log(res)
 
 
-//reverse 把数据倒序排列，返回倒序数组，原来数组改变
+//3,unshift 在数组开始增加元素
+
+console.log(arr.unshift([00,11]))
+
+
+//3,reverse 把数据倒序排列，返回倒序数组，原来数组改变
 
 //sort 给数组排序，返回排序后的数组，原数组改变（在不传递参数的情况下，只能排10以内的数）
 
