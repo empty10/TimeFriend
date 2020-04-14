@@ -34,19 +34,19 @@ if(obj===null){
 let arr=[10,20];
 
 if(arr instanceof Array){
-      console.log('arr是数组类型11111');
+      console.log('arr是数组类型11111',arr instanceof Array);
 }
 
 if(arr.constructor===Array){
-      console.log('arr是数组类型22222');
+      console.log('arr是数组类型22222',arr.constructor);
 }
 
 if(Array.isArray(arr)){
-      console.log('arr是数组类型33333');
+      console.log('arr是数组类型33333',Array.isArray(arr));
 }
 
 
 if(Object.prototype.toString.call(arr)==="[object Array]"){
-      console.log('arr是数组类型444444');
+      console.log('arr是数组类型444444',Object.prototype.toString.call(arr));
 }
 
