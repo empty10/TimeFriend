@@ -2,7 +2,6 @@
 *  浅拷贝：
 *  深拷贝：
 * */
-
 let person={
       name:undefined,
       score:{
@@ -22,7 +21,7 @@ let show = function show(){
     let a=1;
     return function () {
           let b=2;
-          console.log(a+b);
+      //     console.log(a+b);
     }
 };
 
@@ -53,6 +52,7 @@ let deepClone= function deepClone(obj) {
       return result;
 };
 
-console.log(deepClone(person));
+let p= deepClone(show)
+console.log(p,'show');
 
-console.log(JSON.parse(JSON.stringify(person)));
+// console.log(JSON.parse(JSON.stringify(person)));
