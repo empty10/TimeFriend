@@ -19,7 +19,7 @@
   "homepage": "https://github.com/empty10/interView#readme",
   "dependencies": {
     "axios": "^0.18.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.4.1",
     "iview": "^3.1.4",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
