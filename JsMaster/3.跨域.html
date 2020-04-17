@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
 <body>
-    <script>    
+
+    <!-- 1.jsonp -->
+    <!-- <script>    
         fn = (res) =>{
             let {name,age} = res;
             console.log(res)
@@ -16,6 +19,16 @@
 
     <script src='http://localhost:8000/getUserInfo?callBack=fn'>
         
-    </script>
+    </script> -->
+
+    <!-- //2.node 中间层 -->
+    <script src="/node_modules//axios//dist/axios.min.js"></script>
+
+
+   <script>
+        axios.get('./info').then(result=>{
+        console.log(result)
+    })
+   </script>
 </body>
 </html>
