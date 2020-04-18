@@ -11,10 +11,5 @@ export default {
      components:{
         Parent
     },
-    data(){
-        return {
-
-        }
-    },
 }
 </script>

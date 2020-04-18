@@ -2,15 +2,15 @@
     <div>
         儿子 收到 {{value}}
         <button  @click="changeMny"  >点击修改</button>
+        <Grandson1 :value=value  @say="say"></Grandson1>
     </div>
 </template>
 
 <script>
+import Grandson1 from './Gradnson1'
 export default {
-    data(){
-        return {
-
-        }
+    components:{
+        Grandson1
     },
     props:{
         value:{
@@ -24,6 +24,9 @@ export default {
             // this.$emit('update:value',400)
 
             this.$emit('input',300)
+        },
+        say(){
+            console.log('儿子的方法，孙子执行')
         }
     }
 }
