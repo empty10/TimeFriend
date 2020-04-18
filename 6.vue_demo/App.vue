@@ -1,0 +1,20 @@
+<template>
+    <div>
+        app
+        <Parent> </Parent>
+    </div>
+</template>
+
+<script>
+import Parent from './components/Parent'
+export default {
+     components:{
+        Parent
+    },
+    data(){
+        return {
+
+        }
+    },
+}
+</script>
