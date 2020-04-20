@@ -1,7 +1,7 @@
 <template>
     <div>
         孙子 {{value}}
-        <button @click="change"> 修改money </button>
+        <button @click="change" @say="say"> 修改money </button>
     </div>
 </template>
 

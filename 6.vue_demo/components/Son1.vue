@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Grandson1 from './Gradnson1'
+import Grandson1 from './Gradnson1';
 export default {
     components:{
         Grandson1
