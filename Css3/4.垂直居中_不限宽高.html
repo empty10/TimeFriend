@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .container{
+            background-color: blue;
+            width: 300px;
+            height: 300px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .box{
+            background-color:red;
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+    <script>
+        // 1、flex布局，居中
+        // 2、transform ：translate（-50%，-50%）;负margin的方式必须要知道子元素的宽高
+        // 3、position:absolute; margin:0 ; 必须知道父级元素的高度
+        // 4、display:table-cell;text-align:center;vertical-align:center; 行内子元素居中
+        // 5、width= box.offsetWidth;获取盒子宽、高；
+
+    </script>
+</body>
+</html>
