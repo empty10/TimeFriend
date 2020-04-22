@@ -1,7 +1,9 @@
 let arr=[1,2,3,4,5],
     array=[11,10,209,199,22,333];
 
-//push，pop，unshift,shift,splice,slice,join/toString,reverse/sort,
+//push/pop，unshift/shift,reverse/sort，splice,slice,join/toString,,
+
+//其中push/pop，unshift/shift,reverse/sort，splice这个7个方法改变原数组
 
 //1,splice 删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组。
 // let sp=arr.splice(2,1,999)
