@@ -1,55 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Document</title>
-</head>
-<body>
-      <div id="content" style="height:150px;line-height:150px;text-align:center; color:white;background-color:green;font-size:80px;">
-      </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      id="content"
+      style="
+        height: 150px;
+        line-height: 150px;
+        text-align: center;
+        color: white;
+        background-color: green;
+        font-size: 80px;
+      "
+    ></div>
 
-<script type="module" >
-    let num = 1;
-    let content = document.getElementById('content');
+    <script type="module">
+      let num = 1;
+      let content = document.getElementById('content');
 
-    function count() {
-        content.innerHTML = num++;
-    };
-    content.onmousemove = throttle1(count,300);
-    
+      function count() {
+          content.innerHTML = num++;
+      };
+      content.onmousemove = throttle(count,300);
 
-    //截流。意思：限制流速，在一定时间内，只执行一次函数。比如，地铁站早高峰，最终所有的乘客都会上地铁，但是在高峰时刻，某些通道会限制人流量。
 
-       //时间戳
-      function throttle1(func, delay) {
-            let prev = Date.now();
-            return function() {
-                  let context = this;
-                  let args = arguments;
-                  let now = Date.now();
-                  if (now - prev >= delay) {
-                        func.apply(context, args);
-                        prev = Date.now();
-                  }
-            }
-      }
-      //定时器
-      function throttle2(func, wait) {
-            let timeout;
-            return function() {
-                  let context = this;
-                  let args = arguments;
-                  if (!timeout) {
-                        timeout = setTimeout(() => {
-                        timeout = null;
-                        func.apply(context, args)
-                        }, wait)
-                  }
-            }
-      }
+      //截流。意思：限制流速，在一定时间内，只执行一次函数。比如，地铁站早高峰，最终所有的乘客都会上地铁，但是在高峰时刻，某些通道会限制人流量。
 
-</script>
-</body>
+
+        function throttle(fn,wait){
+              let timer = null;
+              return function(){
+                    if(!timer){
+                        timer = setTimeout(()=>{
+                              fn();
+                              timer=null;
+                        },wait)
+                    }
+              }
+        }
+         //时间戳
+        function throttle1(func, delay) {
+              let prev = Date.now();
+              return function() {
+                    let context = this;
+                    let args = arguments;
+                    console.log('======',args)
+                    let now = Date.now();
+                    if (now - prev >= delay) {
+                          func();
+                          // func.apply(context, args);
+                          prev = Date.now();
+                    }
+              }
+        }
+        //定时器
+        function throttle2(func, wait) {
+              let timeout;
+              return function() {
+                    let context = this;
+                    let args = arguments;
+                    if (!timeout) {
+                          timeout = setTimeout(() => {
+                          timeout = null;
+                          func.apply(context, args)
+                          }, wait)
+                    }
+              }
+        }
+    </script>
+  </body>
 </html>
