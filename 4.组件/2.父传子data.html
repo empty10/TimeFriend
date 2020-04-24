@@ -18,8 +18,6 @@
 <script>
       let child = {
             template: `<div> 儿子：{{childMoney}}</div>`,
-
-            // props:['childMoney']
             props:{
                   childMoney:{
                         type:Number,
@@ -28,14 +26,38 @@
                               return val >100 ;  //自定义校验
                         }
                   }
+            },
+            created(){
+                  console.log('son created')
+            },
+            mounted(){
+                  console.log('son mounted')
+            },
+            updated(){
+                  console.log('son updated')
             }
       };
 
       let parent = new Vue({
             el: '#app',
             components:{child},
-            data: {money:400}
+            data: {money:400},
+            created(){
+                  console.log('parent created')
+            },
+            mounted(){
+                  console.log('parent mounted')
+                  setTimeout(()=>{
+                        this.money=500;
+                  },2000)
+            },
+            updated(){
+                  console.log('parent updated')
+            }
       })
+
+      // 一般Vue实例初始化时，只会执行前四个钩子函数
+      // 父子组件的生命周期遵循：由外到内，再由内到外
 </script>
 </body>
 </html>
