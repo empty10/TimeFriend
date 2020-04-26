@@ -11,7 +11,7 @@
 <body>
 
 <div id="app">
-    <input type="text"  v-model="msg">
+    <!-- <input type="text"  v-model="msg"> -->
     {{msg}}
 
 </div>
@@ -20,10 +20,11 @@
     let vm = new Vue({     //vm=ViewModel
           el:'#app',
           data:{         //data中的数据会被 vm 代理
-                msg:'Hello'
+                msg:[1,23,4,{bb:10}]
           }
-
     })
+    vm.msg[1]=999;
+    vm.msg[3].bb=1;
 </script>
 </body>
 </html>
