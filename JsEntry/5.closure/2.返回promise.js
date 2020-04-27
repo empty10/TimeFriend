@@ -6,7 +6,7 @@
      let times=10;
      return function (){
          times++;
-         if(times<10){
+         if(times<2){
             fn();
             return new Promise(()=>{
                 resolve(11)
