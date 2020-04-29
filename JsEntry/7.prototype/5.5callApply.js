@@ -19,8 +19,8 @@ let animal = {
 p1.sayName.call(animal,2,3)
 p1.sayName.apply(animal,[4,5])
 
-let res = p1.sayName.bind(animal,[6,7])
-console.log(res())  
+let res = p1.sayName.bind(animal,[6,7]).call(p1)
+console.log(res)
 // bind  将sayName函数返回
 // ƒ (){
 //     console.log(this.name)
